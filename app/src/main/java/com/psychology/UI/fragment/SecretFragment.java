@@ -1,20 +1,26 @@
 package com.psychology.UI.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.leizhen.psychology.R;
 import com.psychology.UI.widget.AdvancedDecoration;
 import com.psychology.Adapter.RefreshRecyclerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,13 +91,74 @@ public class SecretFragment extends Fragment {
         //
         secret_recylerView.addItemDecoration(new AdvancedDecoration(this.getActivity(),OrientationHelper.VERTICAL));
         secret_recylerView.setAdapter(adapter = new RefreshRecyclerAdapter(this.getActivity()));
+        secret_swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
+            @Override
+            public void onRefresh(){
+                Log.d("onrefresh","invoke onRefresh...");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        List<String> newTextView = new ArrayList<String>();
+                        List<String> newZan = new ArrayList<String>();
+                        List<String> newPingLun = new ArrayList<String>();
 
+                        //获取数据的方法
+                        //getTextViewData()
+                        //getZanData();
+                        //getPingLunData();
 
+                        for(int i = 0;i<5;i++){
+                            int index = i*2 -1;
+                            newTextView.add("this is new TextView " + index);
+                            newZan.add("zan" + index);
+                            newPingLun.add("pinglun" + index);
+                        }
+                        adapter.addItem(newTextView,newZan,newPingLun);
+                        secret_swipeRefreshLayout.setRefreshing(false);
+                        Toast.makeText(getActivity(),"更新了五条数据...",Toast.LENGTH_LONG).show();
+                    }
+                },5000);
+            }
+        });
 
+        //RecyclerView滑动监听,也就是上拉加载
+        secret_recylerView.setOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView,int newState){
+                super.onScrollStateChanged(recyclerView, newState);
+                if((newState == RecyclerView.SCROLL_STATE_IDLE) && (lastVisibleItem + 1 ==adapter.getItemCount())){
+                    adapter.changeMoreStatus(RefreshRecyclerAdapter.LOADING_MORE);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<String> newTextView = new ArrayList<String>();
+                            List<String> newZan = new ArrayList<String>();
+                            List<String> newPingLun = new ArrayList<String>();
 
+                            //获取数据的方法
+                            //getTextViewData()
+                            //getZanData();
+                            //getPingLunData();
 
+                            for(int i = 0;i<5;i++){
+                                int index = i*2 + 1;
+                                newTextView.add("this is more TextView " + index);
+                                newZan.add("zan" + index);
+                                newPingLun.add("pinglun" + index);
+                            }
+                            adapter.addMoreItem(newTextView,newZan,newPingLun);
+                            adapter.changeMoreStatus(RefreshRecyclerAdapter.PULLUP_LOAD_MORE);
+                        }
+                    },1000);
+                }
+            }
 
-
+            @Override
+            public void onScrolled(RecyclerView recyclerView,int dx, int dy){
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+            }
+        });
 
         return view;
     }
