@@ -29,5 +29,7 @@ public class DoctorConstant {
     public static final int SCHOOL_HUASHI_3 = 2003;
     public static final int SCHOOL_HUASHI_4 = 2004;
 
+    //可预约时间
+    public static final String TIME_YI_SHANG = "周一上午";
 
 }

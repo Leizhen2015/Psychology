@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item_doctor_linearlayout"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/list_item_doctor_image"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/ic_docotr_image" />
+
+        <TextView
+            android:id="@+id/list_item_doctor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/list_item_doctor_image"
+            android:text="姓名:雷振"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/list_item_doctor_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/list_item_doctor_school"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/list_item_doctor_school"
+            android:text="年龄:20"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/list_item_doctor_school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_item_doctor_name"
+            android:layout_marginTop="27dp"
+            android:layout_toEndOf="@+id/list_item_doctor_image"
+            android:layout_toRightOf="@+id/list_item_doctor_image"
+            android:text="校区：武汉大学信息学部"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/list_item_doctor_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_item_doctor_school"
+            android:layout_marginTop="38dp"
+            android:layout_toEndOf="@+id/list_item_doctor_image"
+            android:layout_toRightOf="@+id/list_item_doctor_image"
+            android:text="可用时间：周三上午；周四下午；周五上午；周六下午"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/list_item_doctor_jieshao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="1991年7月毕业于锦州医学院医疗系，毕业后留校在附属一院放射线科从事影像诊断、教学和科研工作至今。多年来发表国家级学术论文8篇，省级论文6篇，参编著作4部，获得辽宁省教育厅科研成果奖1项，获得锦州市科技进步三等奖1项。获得辽宁省自然科学学术成果三等奖1项，目前主持和参与省市科研项目4项。" />
+
+    <Button
+        android:id="@+id/list_item_doctor_yuyue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我要预约"
+        android:layout_below="@+id/list_item_doctor_jieshao"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

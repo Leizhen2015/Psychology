@@ -31,7 +31,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private int load_more_status = 0;
 
     private static final int TYPE_ITEM = 0; //普通Item View
-    private static final int TYPE_FOOTER = 1; //顶部FootView
+    private static final int TYPE_FOOTER = 1; //底部FootView
 
     private LayoutInflater mInflater;
     private List<String> mTextView=null;
