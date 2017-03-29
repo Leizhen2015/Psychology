@@ -29,14 +29,15 @@ public class AdvancedDecoration extends RecyclerView.ItemDecoration {
     }
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-        drawHDeraction(c,parent);
-        drawVDeraction(c,parent);
+        //drawHDeraction(c,parent);
+        //drawVDeraction(c,parent);
     }
     /**
      * 绘制水平方向的分割线
      * @param c
      * @param parent
      */
+    /*
     private void drawHDeraction(Canvas c,RecyclerView parent){
         int left=parent.getPaddingLeft();
         int right=parent.getWidth()-parent.getPaddingRight();
@@ -50,11 +51,13 @@ public class AdvancedDecoration extends RecyclerView.ItemDecoration {
             mDivider.draw(c);
         }
     }
+    */
     /**
      * 绘制垂直方向的分割线
-     * @param c
+     * @param
      * @param parent
      */
+    /*
     private void drawVDeraction(Canvas c,RecyclerView parent){
         int top=parent.getPaddingTop();
         int bottom=parent.getHeight()-parent.getPaddingBottom();
@@ -68,13 +71,19 @@ public class AdvancedDecoration extends RecyclerView.ItemDecoration {
             mDivider.draw(c);
         }
     }
+    */
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+
+        outRect.set(40,80,40,40);
+
+        /*
         if(OrientationHelper.HORIZONTAL==orientation){
             outRect.set(0, 0,mDivider.getIntrinsicWidth(), 0);
         }else {
             outRect.set(0, 0, 0,mDivider.getIntrinsicHeight());
         }
+        */
     }
 }
 

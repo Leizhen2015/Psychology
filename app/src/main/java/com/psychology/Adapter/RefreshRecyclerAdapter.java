@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -123,9 +124,9 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         public TextView list_item_secret_textView;
         public TextView list_item_secret_zan;
         public TextView list_item_secret_pinglun;
-        public Button list_item_secret_imagebutton_zan;
-        public Button list_item_secret_imagebutton_pinglun;
-        public Button list_item_secret_imagebutton_fenxiang;
+        public ImageButton list_item_secret_imagebutton_zan;
+        public ImageButton list_item_secret_imagebutton_pinglun;
+        public ImageButton list_item_secret_imagebutton_fenxiang;
 
         public ItemViewHolder(View view){
             super(view);
@@ -133,9 +134,9 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             list_item_secret_textView = (TextView)view.findViewById(R.id.list_item_secret_textView);
             list_item_secret_zan = (TextView)view.findViewById(R.id.list_item_secret_zan);
             list_item_secret_pinglun = (TextView)view.findViewById(R.id.list_item_secret_pinglun);
-            list_item_secret_imagebutton_zan = (Button)view.findViewById(R.id.list_item_secret_imagebutton_zan);
-            list_item_secret_imagebutton_pinglun = (Button)view.findViewById(R.id.list_item_secret_imagebutton_pinglun);
-            list_item_secret_imagebutton_fenxiang = (Button)view.findViewById(R.id.list_item_secret_imagebutton_fenxiang);
+            list_item_secret_imagebutton_zan = (ImageButton)view.findViewById(R.id.list_item_secret_imagebutton_zan);
+            list_item_secret_imagebutton_pinglun = (ImageButton)view.findViewById(R.id.list_item_secret_imagebutton_pinglun);
+            list_item_secret_imagebutton_fenxiang = (ImageButton)view.findViewById(R.id.list_item_secret_imagebutton_fenxiang);
         }
     }
 

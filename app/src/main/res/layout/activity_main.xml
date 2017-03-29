@@ -5,6 +5,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <LinearLayout
+        android:id="@+id/linear_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:orientation="vertical"
+        android:background="#e7abff"
+        android:visibility="gone"
+        >
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/main_layFrame"
         android:layout_width="match_parent"
