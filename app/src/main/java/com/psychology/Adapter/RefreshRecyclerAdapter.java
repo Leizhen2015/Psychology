@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 
 import com.example.leizhen.psychology.R;
+import com.psychology.Entity.Doctor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,8 +105,6 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public int getItemViewType(int position){
         int i = position + 1;
         int item = getItemCount();
-        Log.d("ggg","position + 1 =  " + i );
-        Log.d("ggg","getItemCount()" + item);
         if((position + 1) == getItemCount()){
             return TYPE_FOOTER;
         }else{
@@ -188,5 +187,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         load_more_status = status;
         notifyDataSetChanged();
     }
+
+
 
 }
