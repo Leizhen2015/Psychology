@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
 
         //当系统版本为4.4或者4.4以上时可以使用沉浸式状态栏
-        /*
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
+        /*
         LinearLayout linear_bar=(LinearLayout)findViewById(R.id.linear_bar);
         linear_bar.setVisibility(View.VISIBLE);
         int statusHeight=getStatusBarHeight();
@@ -128,26 +129,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     }
 
-    /**
-     * 获取状态栏的高度
-     * @return
-     */
-    /*
-    private int getStatusBarHeight(){
-        try
-        {
-            Class<?> c=Class.forName("com.android.internal.R$dimen");
-            Object obj=c.newInstance();
-            Field field=c.getField("status_bar_height");
-            int x=Integer.parseInt(field.get(obj).toString());
-            return  getResources().getDimensionPixelSize(x);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return 0;
-    }
 
-    */
+
+
 
 
 }

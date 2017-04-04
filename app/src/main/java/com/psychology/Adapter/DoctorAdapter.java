@@ -52,6 +52,33 @@ public class DoctorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             }
         }
 
+        ArrayList<Integer> a1 = new ArrayList<Integer>(){{
+            add(1);add(2);add(3);add(4);
+        }};
+        String s1 = "张医生虽然工作年龄不长，但是富有年轻人的钻研精神，不畏困难，收获了大量患者的好评";
+        Doctor d1 = new Doctor("张丽",27,a1,s1,1001,100,1);
+
+        a1.clear();
+        a1.add(2);a1.add(3);a1.add(4);a1.add(6);
+        String s2 = "李辰医生已从事这方面的工作二十几载，经验丰富，性格温厚，成功的救助了大批患者";
+        Doctor d2 = new Doctor("李辰",58,a1,s2,1001,100,1);
+
+        a1.clear();
+        a1.add(7);a1.add(8);a1.add(9);a1.add(10);
+        String s3 = "徐希医生在国外工作多年，拥有丰富的经验，多次参加大型研讨会，发表很多相关论文，经验丰富";
+        Doctor d3 = new Doctor("徐希",42,a1,s3,1001,100,1);
+
+        a1.clear();
+        a1.add(10);a1.add(11);a1.add(12);a1.add(13);
+        String s4 = "陈晨医生博士毕业后一直潜心于研究心理疾病，成果斐然，从业以来，他将自己多年的研究应用于实际中，效果显著";
+        Doctor d4 = new Doctor("陈晨",31,a1,s4,1003,100,1);
+
+        mDoctor.add(d1);
+        mDoctor.add(d2);
+        mDoctor.add(d3);
+        mDoctor.add(d4);
+
+        /*
         for(int i = 0;i < 10;i++){
             ArrayList<Integer> aTime = new ArrayList<Integer>();
             Random rand = new Random(i);
@@ -68,6 +95,8 @@ public class DoctorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             Doctor lDoctor = new Doctor("name" + i,i*(rand.nextInt(10)),aTime,"jieshao" + i,r3,r2,r4);
             mDoctor.add(lDoctor);
         }
+        */
+
     }
 
     public String getTimeString(ArrayList<Integer> mArray){
@@ -98,11 +127,11 @@ public class DoctorAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof DoctorAdapter.ItemViewHolder){
-            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_name.setText("Name:" + mDoctor.get(position).getName());
-            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_age.setText("Age:"+mDoctor.get(position).getAge());
-            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_school.setText("School:"+ DoctorConstant.mMap.get(mDoctor.get(position).getXuexiao()) + DoctorConstant.mMap.get(mDoctor.get(position).getXiaoqu()) );
-            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_time.setText("Time:" + getTimeString(mDoctor.get(position).getaTime()));
-            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_jieshao.setText("Jieshao:" + mDoctor.get(position).getJieshao());
+            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_name.setText("姓名: " + mDoctor.get(position).getName());
+            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_age.setText("年龄: "+mDoctor.get(position).getAge());
+            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_school.setText("学校: "+ DoctorConstant.mMap.get(mDoctor.get(position).getXuexiao()) + DoctorConstant.mMap.get(mDoctor.get(position).getXiaoqu()) );
+            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_time.setText("时间: " + getTimeString(mDoctor.get(position).getaTime()));
+            ((DoctorAdapter.ItemViewHolder)holder).list_item_doctor_jieshao.setText("简介: " + mDoctor.get(position).getJieshao());
             ((DoctorAdapter.ItemViewHolder)holder).itemView.setTag(position);
         }else if(holder instanceof DoctorAdapter.FootViewHolder){
             DoctorAdapter.FootViewHolder footViewHolder = (DoctorAdapter.FootViewHolder)holder;

@@ -3,23 +3,20 @@ package com.psychology.UI.fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import com.example.leizhen.psychology.R;
 import com.psychology.Adapter.DoctorAdapter;
-import com.psychology.Adapter.RefreshRecyclerAdapter;
+import com.psychology.Adapter.SecretAdapter;
 import com.psychology.UI.widget.DoctorDecoration;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Field;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,6 +78,13 @@ public class DoctorFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_doctor,container,false);
 
+        LinearLayout linear_bar=(LinearLayout)view.findViewById(R.id.doctor_linear_bar);
+        linear_bar.setVisibility(View.VISIBLE);
+        int statusHeight=getStatusBarHeight();
+        android.widget.LinearLayout.LayoutParams params=(android.widget.LinearLayout.LayoutParams )linear_bar.getLayoutParams();
+        params.height=statusHeight;
+        linear_bar.setLayoutParams(params);
+
         //doctor_swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.doctor_swipeRefreshLayout);
         doctor_recylerView = (RecyclerView)view.findViewById(R.id.doctor_recylerView);
         //
@@ -95,35 +99,6 @@ public class DoctorFragment extends Fragment {
         doctor_decoration = new DoctorDecoration(this.getActivity(),OrientationHelper.VERTICAL);
         doctor_recylerView.addItemDecoration(doctor_decoration);
         doctor_recylerView.setAdapter(doctor_adapter);
-//        doctor_swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
-//            @Override
-//            public void onRefresh(){
-//                Log.d("onrefresh","invoke onRefresh...");
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        List<String> newTextView = new ArrayList<String>();
-//                        List<String> newZan = new ArrayList<String>();
-//                        List<String> newPingLun = new ArrayList<String>();
-//
-//                        //获取数据的方法
-//                        //getTextViewData()
-//                        //getZanData();
-//                        //getPingLunData();
-//
-//                        for(int i = 0;i<5;i++){
-//                            int index = i*2 -1;
-//                            newTextView.add("this is new TextView " + index);
-//                            newZan.add("zan" + index);
-//                            newPingLun.add("pinglun" + index);
-//                        }
-//                        adapter.addItem(newTextView,newZan,newPingLun);
-//                        secret_swipeRefreshLayout.setRefreshing(false);
-//                        Toast.makeText(getActivity(),"更新了五条数据...",Toast.LENGTH_LONG).show();
-//                    }
-//                },5000);
-//            }
-//        });
 
         //RecyclerView滑动监听,也就是上拉加载
         doctor_recylerView.setOnScrollListener(new RecyclerView.OnScrollListener(){
@@ -131,7 +106,7 @@ public class DoctorFragment extends Fragment {
             public void onScrollStateChanged(RecyclerView recyclerView,int newState){
                 super.onScrollStateChanged(recyclerView, newState);
                 if((newState == RecyclerView.SCROLL_STATE_IDLE) && (lastVisibleItem + 1 ==doctor_adapter.getItemCount())){
-                    doctor_adapter.changeMoreStatus(RefreshRecyclerAdapter.LOADING_MORE);
+                    doctor_adapter.changeMoreStatus(SecretAdapter.LOADING_MORE);
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -150,6 +125,24 @@ public class DoctorFragment extends Fragment {
         });
 
         return view;
+    }
+
+    /**
+     * 获取状态栏的高度
+     * @return
+     */
+    private int getStatusBarHeight(){
+        try
+        {
+            Class<?> c=Class.forName("com.android.internal.R$dimen");
+            Object obj=c.newInstance();
+            Field field=c.getField("status_bar_height");
+            int x=Integer.parseInt(field.get(obj).toString());
+            return  getResources().getDimensionPixelSize(x);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 }

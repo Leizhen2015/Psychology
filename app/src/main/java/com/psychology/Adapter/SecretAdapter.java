@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.leizhen.psychology.R;
 import com.psychology.Entity.Doctor;
+import com.psychology.Entity.Secret;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
  * Created by LeiZhen on 2017/3/23.
  */
 
-public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SecretAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     //上拉加载更多
     public static final int PULLUP_LOAD_MORE = 0;
@@ -35,25 +36,58 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private static final int TYPE_FOOTER = 1; //底部FootView
 
     private LayoutInflater mInflater;
-    private List<String> mTextView=null;
-    private List<String> mZan = null;
-    private List<String> mPingLun = null;
-    public RefreshRecyclerAdapter(Context context){
+    private int mPosition = 0;
+
+    private ArrayList<Secret> mSecret = null;
+
+    public SecretAdapter(Context context){
         this.mInflater=LayoutInflater.from(context);
-        this.mTextView=new ArrayList<String>();
-        this.mZan = new ArrayList<String>();
-        this.mPingLun = new ArrayList<String>();
-        //获取数据的方法
-        //getTextViewData()
-        //getZanData()
-        //getPingLunData()
-        for (int i=0;i<8;i++){
-            int index=i+1;
-            mTextView.add("Example"+index);
-            mZan.add(""+index*2);
-            mPingLun.add(""+index);
-        }
+        this.mSecret = new ArrayList<Secret>();
+
+        getSecretFromDb();
     }
+
+    public Secret getSecret(){
+        return mSecret.get(mPosition);
+    }
+
+    public void getSecretFromDb(){
+        if(mSecret != null){
+            if(!mSecret.isEmpty()){
+                mSecret.clear();
+            }
+        }
+
+        String n1 = "好烦啊啊啊 啊啊，我期末考试挂了三科，感觉无颜见父母了";
+        String d1 = "我今年大二，上个学期有点贪玩，经常翘课，然后上个学期期末的时候，还发现了一款特别好玩的游戏，导致期末没有好好复习，现在挂了三科，父母对我的期望一直特别高，现在感觉无颜回去见他们，好烦好烦";
+        String [] p1 = {"不用烦的，挂个科而已，下个学期努力就行","挂科不是很正常吗，这么多人都挂过科，他们也没有太悲伤啊","塞翁失马，焉知非福","加油！下学期争取别挂了","反思下你这学期都干嘛去了","记得总结，多问同学问题","挂科而已，还有人说，没挂过科的大学是不完整的呢","加油！","别灰心丧气，加油！","下学期认真上课，别翘课就行了","加油！努力！坚持！"};
+        Secret s1 = new Secret(n1,5,p1,d1);
+
+        String n2 = "。。。昨天跟我女朋友大吵了一架，现在很难受";
+        String d2 = "...";
+        String [] p2 = {"...","..."};
+        Secret s2 = new Secret(n2,3,p2,d2);
+
+        String n3 = "室友天天晚上打游戏，真的吵死人了，好想换寝室啊，怎么说都没用";
+        String d3 = "...";
+        String [] p3 = {"...","...",",,,,"};
+        Secret s3 = new Secret(n3,5,p3,d3);
+
+        String n4 = "总感觉融入不了学校，感觉自己和他们格格不入";
+        String d4 = "...";
+        String [] p4 = {"..."};
+        Secret s4 = new Secret(n4,2,p4,d4);
+
+        String n5 = "感觉自己被室友孤立了";
+        String d5 = "...";
+        String [] p5 = {"...","..."};
+        Secret s5 = new Secret(n5,2,p5,d5);
+
+        mSecret.add(s1);mSecret.add(s2);mSecret.add(s3);mSecret.add(s4);mSecret.add(s5);
+    }
+
+
+
     /**
      * item显示类型
      * @param parent
@@ -84,9 +118,9 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof ItemViewHolder){
-            ((ItemViewHolder)holder).list_item_secret_textView.setText(mTextView.get(position));
-            ((ItemViewHolder)holder).list_item_secret_zan.setText("赞"+mZan.get(position));
-            ((ItemViewHolder)holder).list_item_secret_pinglun.setText("评论"+mPingLun.get(position));
+            ((ItemViewHolder)holder).list_item_secret_textView.setText(mSecret.get(position).getNeirong());
+            ((ItemViewHolder)holder).list_item_secret_zan.setText("赞"+mSecret.get(position).getZan());
+            ((ItemViewHolder)holder).list_item_secret_pinglun.setText("评论"+mSecret.get(position).getPinglun().length);
             ((ItemViewHolder)holder).itemView.setTag(position);
         }else if(holder instanceof FootViewHolder){
             FootViewHolder footViewHolder = (FootViewHolder)holder;
@@ -103,6 +137,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public int getItemViewType(int position){
+        mPosition = position;
         int i = position + 1;
         int item = getItemCount();
         if((position + 1) == getItemCount()){
@@ -114,7 +149,7 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public int getItemCount() {
-        return mTextView.size()+1;
+        return mSecret.size()+1;
     }
 
     //自定义的ViewHolder，持有每个Item的的所有界面元素
@@ -148,29 +183,21 @@ public class RefreshRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    //添加数据
-    public void addItem(List<String> newDatas,List<String> newZan,List<String> newPinglun) {
+    //add in the start
+    public void addItem(ArrayList<Secret> newSecret) {
         //mTitles.add(position, data);
         //notifyItemInserted(position);
-        newDatas.addAll(mTextView);
-        mTextView.removeAll(mTextView);
-        mTextView.addAll(newDatas);
 
-        newZan.addAll(mZan);
-        mZan.removeAll(mZan);
-        mZan.addAll(newZan);
-
-        newPinglun.addAll(mPingLun);
-        mPingLun.removeAll(mPingLun);
-        mPingLun.addAll(newPinglun);
+        newSecret.addAll(mSecret);
+        mSecret.removeAll(mSecret);
+        mSecret.addAll(newSecret);
 
         notifyDataSetChanged();
     }
 
-    public void addMoreItem(List<String> newDatas,List<String> newZan,List<String> newPinglun) {
-        mTextView.addAll(newDatas);
-        mZan.addAll(newZan);
-        mPingLun.addAll(newPinglun);
+    //add in the end
+    public void addMoreItem(ArrayList<Secret> moreSecret) {
+        mSecret.addAll(moreSecret);
         notifyDataSetChanged();
     }
 

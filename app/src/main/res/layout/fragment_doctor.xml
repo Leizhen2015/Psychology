@@ -6,49 +6,66 @@
     tools:context="com.psychology.UI.fragment.DoctorFragment">
 
     <LinearLayout
+        android:id="@+id/doctor_linear_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:orientation="vertical"
+        android:background="@color/colorBrown"
+        android:visibility="gone"
+        >
+    </LinearLayout>
+
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="40dp"
+        android:background="@color/colorBrown">
 
         <Button
             android:id="@+id/doctor_button_xuexiao"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="按学校"/>
+            android:text="按学校" />
 
         <Button
             android:id="@+id/doctor_button_xiaoqu"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="按校区"/>
+            android:text="按校区" />
 
         <Button
             android:id="@+id/doctor_button_shijian"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="按时间"/>
+            android:text="按时间" />
 
         <Button
             android:id="@+id/doctor_button_guanzhu"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="关注"/>
+            android:text="关注" />
 
     </LinearLayout>
 
     <SearchView
         android:id="@+id/doctor_searchview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </SearchView>
+        android:layout_height="30dp"></SearchView>
 
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/doctor_recylerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/doctor_recylerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    ></android.support.v7.widget.RecyclerView>
 
 
 </LinearLayout>

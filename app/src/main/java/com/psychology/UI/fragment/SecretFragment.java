@@ -1,5 +1,6 @@
 package com.psychology.UI.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -16,9 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.leizhen.psychology.R;
+import com.psychology.Entity.Doctor;
+import com.psychology.Entity.Secret;
+import com.psychology.UI.SecretItemActivity;
 import com.psychology.UI.widget.AdvancedDecoration;
-import com.psychology.Adapter.RefreshRecyclerAdapter;
+import com.psychology.Adapter.SecretAdapter;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +43,9 @@ public class SecretFragment extends Fragment {
     private TextView top_bar_title;
     private SwipeRefreshLayout secret_swipeRefreshLayout;
     private RecyclerView secret_recylerView;
-    private RefreshRecyclerAdapter adapter;
+    private SecretAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
+    private TextView list_item_secret_textview;
     private int lastVisibleItem;
 
     // TODO: Rename and change types of parameters
@@ -79,6 +85,14 @@ public class SecretFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_secret,container,false);
+
+        LinearLayout linear_bar=(LinearLayout)view.findViewById(R.id.secret_linear_bar);
+        linear_bar.setVisibility(View.VISIBLE);
+        int statusHeight=getStatusBarHeight();
+        android.widget.LinearLayout.LayoutParams params=(android.widget.LinearLayout.LayoutParams )linear_bar.getLayoutParams();
+        params.height=statusHeight;
+        linear_bar.setLayoutParams(params);
+
         secret_swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.secret_swipeRefreshLayout);
         secret_recylerView = (RecyclerView)view.findViewById(R.id.secret_recylerView);
         //
@@ -90,7 +104,8 @@ public class SecretFragment extends Fragment {
         secret_recylerView.setLayoutManager(linearLayoutManager);
         //
         secret_recylerView.addItemDecoration(new AdvancedDecoration(this.getActivity(),OrientationHelper.VERTICAL));
-        secret_recylerView.setAdapter(adapter = new RefreshRecyclerAdapter(this.getActivity()));
+        adapter = new SecretAdapter(this.getActivity());
+        secret_recylerView.setAdapter(adapter);
         secret_swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
             @Override
             public void onRefresh(){
@@ -98,22 +113,16 @@ public class SecretFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        List<String> newTextView = new ArrayList<String>();
-                        List<String> newZan = new ArrayList<String>();
-                        List<String> newPingLun = new ArrayList<String>();
 
-                        //获取数据的方法
-                        //getTextViewData()
-                        //getZanData();
-                        //getPingLunData();
+                        ArrayList<Secret> newAl = new ArrayList<Secret>();
 
                         for(int i = 0;i<5;i++){
                             int index = i*2 -1;
-                            newTextView.add("this is new TextView " + index);
-                            newZan.add("zan" + index);
-                            newPingLun.add("pinglun" + index);
+                            String [] s1 = {"fff","ffff","ffd"};
+                            Secret s = new Secret("Example" + i ,3+i,s1,"description" + i);
+                            newAl.add(s);
                         }
-                        adapter.addItem(newTextView,newZan,newPingLun);
+                        adapter.addItem(newAl);
                         secret_swipeRefreshLayout.setRefreshing(false);
                         Toast.makeText(getActivity(),"更新了五条数据...",Toast.LENGTH_LONG).show();
                     }
@@ -127,27 +136,20 @@ public class SecretFragment extends Fragment {
             public void onScrollStateChanged(RecyclerView recyclerView,int newState){
                 super.onScrollStateChanged(recyclerView, newState);
                 if((newState == RecyclerView.SCROLL_STATE_IDLE) && (lastVisibleItem + 1 ==adapter.getItemCount())){
-                    adapter.changeMoreStatus(RefreshRecyclerAdapter.LOADING_MORE);
+                    adapter.changeMoreStatus(SecretAdapter.LOADING_MORE);
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            List<String> newTextView = new ArrayList<String>();
-                            List<String> newZan = new ArrayList<String>();
-                            List<String> newPingLun = new ArrayList<String>();
-
-                            //获取数据的方法
-                            //getTextViewData()
-                            //getZanData();
-                            //getPingLunData();
+                            ArrayList<Secret> newAl = new ArrayList<Secret>();
 
                             for(int i = 0;i<5;i++){
-                                int index = i*2 + 1;
-                                newTextView.add("this is more TextView " + index);
-                                newZan.add("zan" + index);
-                                newPingLun.add("pinglun" + index);
+                                int index = i*2 -1;
+                                String [] s1 = {"fff","ffff","ffd"};
+                                Secret s = new Secret("MoreExample" + i ,3+i,s1,"MoreDescription" + i);
+                                newAl.add(s);
                             }
-                            adapter.addMoreItem(newTextView,newZan,newPingLun);
-                            adapter.changeMoreStatus(RefreshRecyclerAdapter.PULLUP_LOAD_MORE);
+                            adapter.addMoreItem(newAl);
+                            adapter.changeMoreStatus(SecretAdapter.PULLUP_LOAD_MORE);
                         }
                     },1000);
                 }
@@ -160,7 +162,45 @@ public class SecretFragment extends Fragment {
             }
         });
 
+        list_item_secret_textview = (TextView)view.findViewById(R.id.list_item_secret_textView);
+        list_item_secret_textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Bundle mBundle = new Bundle();
+                mBundle.putSerializable("Secret",adapter.getSecret());
+                Intent intent = new Intent();
+                intent.putExtras(mBundle);
+                intent.setClass(getActivity(), SecretItemActivity.class);
+                startActivity(intent);
+                onDestroy();
+
+
+            }
+        });
+
+
         return view;
     }
+
+    /**
+     * 获取状态栏的高度
+     * @return
+     */
+
+    private int getStatusBarHeight(){
+        try
+        {
+            Class<?> c=Class.forName("com.android.internal.R$dimen");
+            Object obj=c.newInstance();
+            Field field=c.getField("status_bar_height");
+            int x=Integer.parseInt(field.get(obj).toString());
+            return  getResources().getDimensionPixelSize(x);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 
 }
