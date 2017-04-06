@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 .setFirstSelectedPosition(0)
                 .initialise();
 
+
         fragments = getFragments();
         setDefaultFragment();
         bottomNavigationBar.setTabSelectedListener(this);
@@ -71,9 +72,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     private  void setDefaultFragment(){
 
+
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_layFrame, PassageFragment.newInstance("Passage"));
+        transaction.replace(R.id.main_layFrame, fragments.get(0));
         transaction.commit();
 
     }
