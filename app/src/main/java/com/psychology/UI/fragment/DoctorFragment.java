@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import com.example.leizhen.psychology.R;
 import com.psychology.Adapter.DoctorAdapter;
 import com.psychology.Adapter.SecretAdapter;
-import com.psychology.UI.widget.DoctorDecoration;
+import com.psychology.UI.widget.AdvancedDecoration;
 
 import java.lang.reflect.Field;
 
@@ -39,7 +39,7 @@ public class DoctorFragment extends Fragment {
     private RecyclerView doctor_recylerView;
     //private SwipeRefreshLayout doctor_swipeRefreshLayout;
     private LinearLayoutManager linearLayoutManager;
-    private DoctorDecoration doctor_decoration;
+    private AdvancedDecoration doctor_decoration;
     private DoctorAdapter doctor_adapter;
 
     private int lastVisibleItem;
@@ -96,7 +96,7 @@ public class DoctorFragment extends Fragment {
         doctor_recylerView.setLayoutManager(linearLayoutManager);
         //
         doctor_adapter = new DoctorAdapter(this.getActivity());
-        doctor_decoration = new DoctorDecoration(this.getActivity(),OrientationHelper.VERTICAL);
+        doctor_decoration = new AdvancedDecoration(this.getActivity(),OrientationHelper.VERTICAL);
         doctor_recylerView.addItemDecoration(doctor_decoration);
         doctor_recylerView.setAdapter(doctor_adapter);
 

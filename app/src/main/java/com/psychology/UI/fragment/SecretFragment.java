@@ -17,15 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.leizhen.psychology.R;
-import com.psychology.Entity.Doctor;
 import com.psychology.Entity.Secret;
 import com.psychology.UI.SecretItemActivity;
-import com.psychology.UI.widget.AdvancedDecoration;
+import com.psychology.UI.widget.SecretDecoration;
 import com.psychology.Adapter.SecretAdapter;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -103,7 +101,7 @@ public class SecretFragment extends Fragment {
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         secret_recylerView.setLayoutManager(linearLayoutManager);
         //
-        secret_recylerView.addItemDecoration(new AdvancedDecoration(this.getActivity(),OrientationHelper.VERTICAL));
+        secret_recylerView.addItemDecoration(new SecretDecoration(this.getActivity(),OrientationHelper.VERTICAL));
         adapter = new SecretAdapter(this.getActivity());
         secret_recylerView.setAdapter(adapter);
         secret_swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){

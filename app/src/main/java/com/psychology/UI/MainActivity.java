@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_layFrame, PassageFragment.newInstance("Home"));
+        transaction.replace(R.id.main_layFrame, PassageFragment.newInstance("Passage"));
         transaction.commit();
 
     }
@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private ArrayList<Fragment> getFragments(){
 
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(PassageFragment.newInstance("Home"));
-        fragments.add(CompassFragment.newInstance("Books"));
-        fragments.add(SecretFragment.newInstance("Music"));
-        fragments.add(DoctorFragment.newInstance("Movies & TV"));
-        fragments.add(SettingFragment.newInstance("Games"));
+        fragments.add(PassageFragment.newInstance("Passage"));
+        fragments.add(CompassFragment.newInstance("Compass"));
+        fragments.add(SecretFragment.newInstance("Secret"));
+        fragments.add(DoctorFragment.newInstance("Doctor"));
+        fragments.add(SettingFragment.newInstance("Setting"));
         return fragments;
 
     }
