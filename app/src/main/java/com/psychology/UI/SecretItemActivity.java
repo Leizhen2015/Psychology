@@ -39,7 +39,7 @@ public class SecretItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_secret_item);
+        setContentView(R.layout.login);
 
         //当系统版本为4.4或者4.4以上时可以使用沉浸式状态栏
 
