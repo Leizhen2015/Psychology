@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="专栏类型："
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/compass_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="情感相关"
+            android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="20dp" />
+        <Button
+            android:id="@+id/compass_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/small_btn_shape"
+            android:text="关注" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/compass_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:text="如何应对失恋"
+        android:lines="1"/>
+
+    <TextView
+        android:id="@+id/compass_con"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:lines="3"
+        android:text="年大概这个时候，我的大闺蜜给我电话，说跟自己的男朋友分手时候了，当时的我正在去健身房的路上，我说你现在是什么情况，她回答说也就昨天刚发生的事情，我说那你先哭一会吧，我先去跑步了。后来我把这个事情告诉另外一个死党L小姐的时候，她大骂我太绝情，朋友最最需要你的时候，你竟然用来做自己的事情，实在是太不够意思。于是我问L小姐，你当年跟大学初恋分手的时候，我是不是也是叮嘱你先哭个几天，然后我们再慢慢聊？L小姐点头说，对哦，那个时候我觉得整个世界都崩溃了，哪还听得进去你的话。那不就是了吗！我白了她一眼。
+
+作者：达达令
+链接：https://www.zhihu.com/question/19833746/answer/48871204
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"/>
+</LinearLayout>

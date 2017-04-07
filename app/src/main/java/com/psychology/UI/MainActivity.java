@@ -1,5 +1,6 @@
 package com.psychology.UI;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,6 +30,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent();
+        //制定intent要启动的类
+        intent.setClass(MainActivity.this, LoginActivity.class);
+        //启动一个新的Activity
+        startActivity(intent);
+        //关闭当前的
+
         setContentView(R.layout.activity_main);
 
 
@@ -65,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
 
         fragments = getFragments();
+
+
         setDefaultFragment();
         bottomNavigationBar.setTabSelectedListener(this);
 

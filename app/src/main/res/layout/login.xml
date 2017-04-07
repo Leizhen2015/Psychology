@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="@mipmap/user_head_icon"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/user_id"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:hint="    请输入用户名"
+        android:background="@drawable/edit_shape"/>
+
+    <EditText
+        android:id="@+id/user_password"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="55dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:inputType="textPassword"
+        android:hint="    请输入密码"
+        android:background="@drawable/edit_shape"/>
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:text="登录"
+        android:background="@drawable/buttton_shape" />
+
+    <Button
+        android:id="@+id/regist_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:text="注册"
+        android:background="@drawable/buttton_shape" />
+</LinearLayout>

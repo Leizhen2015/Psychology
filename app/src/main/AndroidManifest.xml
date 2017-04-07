@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.psychology.UI.SecretItemActivity"></activity>
+        <activity android:name="com.psychology.UI.SecretItemActivity" />
+        <activity android:name="com.psychology.UI.LoginActivity"></activity>
     </application>
 
 </manifest>
