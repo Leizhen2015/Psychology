@@ -25,6 +25,8 @@ import com.psychology.Adapter.SecretAdapter;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import static com.example.leizhen.psychology.R.id.parent;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -43,7 +45,7 @@ public class SecretFragment extends Fragment {
     private RecyclerView secret_recylerView;
     private SecretAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
-    private TextView list_item_secret_textview;
+    private LinearLayout list_item_secret_linearlayout;
     private int lastVisibleItem;
 
     // TODO: Rename and change types of parameters
@@ -160,8 +162,9 @@ public class SecretFragment extends Fragment {
             }
         });
 
-        list_item_secret_textview = (TextView)view.findViewById(R.id.list_item_secret_textView);
-        list_item_secret_textview.setOnClickListener(new View.OnClickListener() {
+        /*
+        list_item_secret_linearlayout = (LinearLayout) view.findViewById(R.id.list_item_secret_linearlayout);
+        list_item_secret_linearlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -176,9 +179,21 @@ public class SecretFragment extends Fragment {
 
             }
         });
+        */
+
 
 
         return view;
+    }
+
+    public void mIntent(){
+        Bundle mBundle = new Bundle();
+        mBundle.putSerializable("Secret",adapter.getSecret());
+        Intent intent = new Intent();
+        intent.putExtras(mBundle);
+        intent.setClass(getActivity(), SecretItemActivity.class);
+        startActivity(intent);
+        onDestroy();
     }
 
     /**

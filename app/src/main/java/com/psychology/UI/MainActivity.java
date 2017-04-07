@@ -80,6 +80,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     }
 
+    public void setFragemnt(int i){
+
+        switch(i){
+            case 0:
+
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+
+    }
+
     private ArrayList<Fragment> getFragments(){
 
         ArrayList<Fragment> fragments = new ArrayList<>();

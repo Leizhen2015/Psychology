@@ -75,6 +75,18 @@ public class SecretItemActivity extends AppCompatActivity {
         mAdapter = new SecretItemActivityAdapter(this,mSecret);
         activity_secret_item_recyclerview.setAdapter(mAdapter);
 
+        activity_secret_item_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle mBundle = new Bundle();
+                mBundle.putInt("sercret",2);
+                Intent mIntent = new Intent(SecretItemActivity.this,MainActivity.class);
+                mIntent.putExtras(mBundle);
+                startActivity(mIntent);
+                onDestroy();
+            }
+        });
+
     }
 
     /**

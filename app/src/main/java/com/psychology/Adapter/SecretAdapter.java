@@ -1,6 +1,8 @@
 package com.psychology.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import com.example.leizhen.psychology.R;
 import com.psychology.Entity.Doctor;
 import com.psychology.Entity.Secret;
+import com.psychology.UI.SecretItemActivity;
+import com.psychology.UI.fragment.SecretFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +43,7 @@ public class SecretAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private int mPosition = 0;
 
     private ArrayList<Secret> mSecret = null;
+
 
     public SecretAdapter(Context context){
         this.mInflater=LayoutInflater.from(context);
@@ -99,6 +104,9 @@ public class SecretAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
      if(viewType == TYPE_ITEM){
          final View view=mInflater.inflate(R.layout.list_item_secret,parent,false);
          //这边可以做一些属性设置，甚至事件监听绑定
+
+
+
          ItemViewHolder itemViewHolder =new ItemViewHolder(view);
          return itemViewHolder;
      }else if(viewType == TYPE_FOOTER){
